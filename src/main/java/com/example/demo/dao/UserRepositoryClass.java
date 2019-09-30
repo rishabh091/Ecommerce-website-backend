@@ -12,6 +12,9 @@ public class UserRepositoryClass {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    UserManagement userManagement;
+
     public void add(User user){
         System.out.println("Adding a value");
         userRepository.save(user);
@@ -22,7 +25,6 @@ public class UserRepositoryClass {
         boolean permission=false;
         ArrayList<User> userList=(ArrayList<User>) userRepository.findAll();
 
-        UserManagement userManagement=new UserManagement();
         permission=userManagement.checkLogin(user,userList);
 
         return permission;

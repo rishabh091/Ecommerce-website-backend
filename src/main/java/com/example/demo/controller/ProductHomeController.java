@@ -26,4 +26,11 @@ public class ProductHomeController {
     public ArrayList<Products> getAllProducts(){
         return productRepositoryClass.getAllProducts();
     }
+
+    @GetMapping(path = "/home/{batch}")
+    public Long getId(@RequestParam(name = "name") String name,
+                      @PathVariable("batch")int batch){
+        System.out.println("Sending id.");
+        return productRepositoryClass.getId(name);
+    }
 }
