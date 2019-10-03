@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
+@CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
 @RequestMapping()
 public class ProductHomeController {
@@ -27,10 +29,21 @@ public class ProductHomeController {
         return productRepositoryClass.getAllProducts();
     }
 
-    @GetMapping(path = "/home/{batch}")
-    public Long getId(@RequestParam(name = "name") String name,
-                      @PathVariable("batch")int batch){
+    @GetMapping(path = "/home/id/{id}")
+    public Optional<Products> getFields(@PathVariable("id") Long id){
         System.out.println("Sending id.");
-        return productRepositoryClass.getId(name);
+        return productRepositoryClass.getFields(id);
+    }
+
+    @GetMapping(path = "/home/priceFilter/{price}")
+    public ArrayList<Products> getByPrice(@PathVariable("price") double price){
+        System.out.println("Getting by price.");
+        return productRepositoryClass.getByPrice(price);
+    }
+
+    @GetMapping(path = "/home/category/{category}")
+    public ArrayList<Products> getByCategory(@PathVariable("category") String category){
+        System.out.println("Getting by category.");
+        return productRepositoryClass.getByCategory(category);
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Component
 public class ProductRepositoryClass {
@@ -26,10 +27,15 @@ public class ProductRepositoryClass {
         return (ArrayList<Products>) productRepository.findAll();
     }
 
-    public Long getId(String name){
-        ArrayList<Products> productList= (ArrayList<Products>) productRepository.findAll();
+    public Optional<Products> getFields(Long id){
+        return productRepository.findById(id);
+    }
 
-        Long id=productManagement.getId(productList,name);
-        return id;
+    public ArrayList<Products> getByPrice(double price){
+        return (ArrayList<Products>)productRepository.findAllByPrice(price);
+    }
+
+    public ArrayList<Products> getByCategory(String category){
+        return (ArrayList<Products>)productRepository.findAllByCategory(category);
     }
 }

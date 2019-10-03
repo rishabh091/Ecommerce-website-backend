@@ -21,6 +21,9 @@ public class Products {
     @Column(name = "productDetails")
     private String details;
 
+    @Column(name = "productModel")
+    private String model;
+
     @Column(name = "productImage")
     private String imgUrl;
 
@@ -87,16 +90,25 @@ public class Products {
         this.inStock = inStock;
     }
 
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
     public Products() {
     }
 
-    public Products(String name, double price, String details, String imgUrl, String category, @NotNull boolean inStock) {
+    public Products(String name, double price, String details, String imgUrl, String category, @NotNull boolean inStock,String model) {
         this.name = name;
         this.price = price;
         this.details = details;
         this.imgUrl = imgUrl;
         this.category = category;
         this.inStock = inStock;
+        this.model=model;
     }
 
     @Override
