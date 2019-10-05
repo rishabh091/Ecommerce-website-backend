@@ -20,13 +20,13 @@ public class UserRepositoryClass {
         userRepository.save(user);
     }
 
-    public boolean checkUser(User user){
-        System.out.println("Checking permissions of login request.");
-        boolean permission=false;
-        ArrayList<User> userList=(ArrayList<User>) userRepository.findAll();
-
-        permission=userManagement.checkLogin(user,userList);
-
-        return permission;
-    }
+//    public boolean checkUser(User user){
+//        System.out.println("Checking permissions of login request.");
+//        boolean permission=false;
+//        ArrayList<User> userList=(ArrayList<User>) userRepository.findAll();
+//
+//        permission=userManagement.checkLogin(user,userList);
+//
+//        return permission;
+//    }
 }

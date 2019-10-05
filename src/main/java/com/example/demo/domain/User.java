@@ -14,6 +14,8 @@ public class User {
     @Column(name = "name")
     private String name;
 
+    private int isActive;
+
     @Column(name = "password")
     private String password;
 
@@ -99,5 +101,13 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public int getActive() {
+        return isActive;
+    }
+
+    public void setActive(int active) {
+        this.isActive = active;
     }
 }

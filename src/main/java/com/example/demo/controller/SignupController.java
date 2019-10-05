@@ -13,7 +13,7 @@ public class SignupController {
     @Autowired
     UserRepositoryClass userRepositoryClass;
 
-    @PostMapping(path = "/sendingData" , produces="application/json")
+    @PostMapping(path = "/sendingData" , consumes="application/json")
     public String signUp(@RequestBody User user) {
         System.out.println("Sign up service is working");
         userRepositoryClass.add(user);

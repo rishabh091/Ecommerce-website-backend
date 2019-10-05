@@ -11,4 +11,5 @@ public interface ProductRepository extends CrudRepository<Products, Long> {
 
     List<Products> findAllByCategory(String category);
     List<Products> findAllByPrice(double price);
+    List<Products> findAllByPriceBetween(double startPrice,double endPrice);
 }

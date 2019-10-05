@@ -31,8 +31,8 @@ public class ProductRepositoryClass {
         return productRepository.findById(id);
     }
 
-    public ArrayList<Products> getByPrice(double price){
-        return (ArrayList<Products>)productRepository.findAllByPrice(price);
+    public ArrayList<Products> getByPrice(double price,double price2){
+        return (ArrayList<Products>)productRepository.findAllByPriceBetween(price,price2);
     }
 
     public ArrayList<Products> getByCategory(String category){

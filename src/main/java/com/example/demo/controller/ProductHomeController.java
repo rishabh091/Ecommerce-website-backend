@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Optional;
 
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping()
 public class ProductHomeController {
@@ -35,10 +35,11 @@ public class ProductHomeController {
         return productRepositoryClass.getFields(id);
     }
 
-    @GetMapping(path = "/home/priceFilter/{price}")
-    public ArrayList<Products> getByPrice(@PathVariable("price") double price){
+    @GetMapping(path = "/home/priceFilter/{price}/{price2}")
+    public ArrayList<Products> getByPrice(@PathVariable("price") double price,
+                                          @PathVariable("price2") double price2){
         System.out.println("Getting by price.");
-        return productRepositoryClass.getByPrice(price);
+        return productRepositoryClass.getByPrice(price,price2);
     }
 
     @GetMapping(path = "/home/category/{category}")
