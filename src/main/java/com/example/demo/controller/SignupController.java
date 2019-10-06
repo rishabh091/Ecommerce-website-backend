@@ -15,9 +15,10 @@ public class SignupController {
 
     @PostMapping(path = "/sendingData" , consumes="application/json")
     public String signUp(@RequestBody User user) {
+        user.setActive(1);
         System.out.println("Sign up service is working");
         userRepositoryClass.add(user);
 
-        return "Success";
+        return "\"Success\"";
     }
 }

@@ -36,8 +36,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         httpSecurity.csrf().disable()
                 .authorizeRequests().antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
                 .antMatchers("/signup").permitAll()
+                .antMatchers("/signup/**").permitAll()
                 .antMatchers("/home").permitAll()
                 .antMatchers("/home/**").permitAll()
+                .antMatchers("/login/**").permitAll()
                 .anyRequest().authenticated()
                 .and().httpBasic();
 
