@@ -35,16 +35,17 @@ public class ProductHomeController {
         return productRepositoryClass.getFields(id);
     }
 
-    @GetMapping(path = "/home/priceFilter/{price}/{price2}")
-    public ArrayList<Products> getByPrice(@PathVariable("price") double price,
-                                          @PathVariable("price2") double price2){
-        System.out.println("Getting by price.");
-        return productRepositoryClass.getByPrice(price,price2);
-    }
-
     @GetMapping(path = "/home/category/{category}")
     public ArrayList<Products> getByCategory(@PathVariable("category") String category){
         System.out.println("Getting by category.");
         return productRepositoryClass.getByCategory(category);
+    }
+
+    @GetMapping(path = "/home/category/{category}/priceFilter/{price1}/{price2}")
+    public ArrayList<Products> getByCategoryAndPriceBetween(@PathVariable("category") String category,
+                                                            @PathVariable("price1") double price1,
+                                                            @PathVariable("price2") double price2){
+        System.out.println("Getting by category and price");
+        return productRepositoryClass.getByCategoryAndPrice(category,price1,price2);
     }
 }

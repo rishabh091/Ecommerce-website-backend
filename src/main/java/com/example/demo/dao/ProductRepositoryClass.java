@@ -31,11 +31,11 @@ public class ProductRepositoryClass {
         return productRepository.findById(id);
     }
 
-    public ArrayList<Products> getByPrice(double price,double price2){
-        return (ArrayList<Products>)productRepository.findAllByPriceBetween(price,price2);
-    }
-
     public ArrayList<Products> getByCategory(String category){
         return (ArrayList<Products>)productRepository.findAllByCategory(category);
+    }
+
+    public ArrayList<Products> getByCategoryAndPrice(String category,double p1,double p2){
+        return (ArrayList<Products>)productRepository.findAllByCategoryAndPriceBetween(category,p1,p2);
     }
 }

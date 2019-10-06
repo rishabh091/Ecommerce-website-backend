@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import com.example.demo.dao.UserRepositoryClass;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -12,6 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 @RequestMapping("/login")
 public class LoginController {
+
+    @Autowired
+    UserRepositoryClass userRepositoryClass;
 
     @GetMapping(path = "/checkUser", produces = "application/json")
     public String checkLogin(){
@@ -30,4 +35,5 @@ public class LoginController {
 
         return "\"logout successful\"";
     }
+
 }
