@@ -19,9 +19,12 @@ public class ProductHomeController {
     @PostMapping(path = "/addProduct", produces = "application/json")
     public String addProduct(@RequestBody Products products){
         System.out.println("Adding products");
-        productRepositoryClass.addProduct(products);
+        boolean result=productRepositoryClass.addProduct(products);
 
-        return "Product Inserted";
+        if(result)
+            return "\"Product Inserted\"";
+        else
+            return "\"Server Error Try again later\"";
     }
 
     @GetMapping(path = "/home")

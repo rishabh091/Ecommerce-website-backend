@@ -18,6 +18,9 @@ public class Products {
     @Column(name = "price")
     private double price;
 
+    @Column(name = "brand")
+    private String brand;
+
     @Column(name = "productDetails")
     private String details;
 
@@ -96,6 +99,14 @@ public class Products {
 
     public void setModel(String model) {
         this.model = model;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
     public Products() {

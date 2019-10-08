@@ -17,10 +17,17 @@ public class ProductRepositoryClass {
     @Autowired
     ProductManagement productManagement;
 
-    public void addProduct(Products products){
-        System.out.println("Adding a product");
-        productRepository.save(products);
-        System.out.println("Product Added");
+    public boolean addProduct(Products products){
+        try{
+            System.out.println("Adding a product");
+            productRepository.save(products);
+            System.out.println("Product Added");
+
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
     }
 
     public ArrayList<Products> getAllProducts(){
