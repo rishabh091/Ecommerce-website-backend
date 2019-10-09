@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.security.Principal;
 import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -20,8 +21,12 @@ public class LoginController {
     @Autowired
     UserRepositoryClass userRepositoryClass;
 
+    public static Principal principal;
+
     @GetMapping(path = "/checkUser", produces = "application/json")
-    public String checkLogin(){
+    public String checkLogin(Principal principal){
+        System.out.println("Logging in user.."+principal.getName());
+        this.principal=principal;
         return "\"login successful\"";
     }
 
@@ -33,9 +38,13 @@ public class LoginController {
         if(authentication!=null){
             new SecurityContextLogoutHandler().logout(request,response,authentication);
             request.getSession().invalidate();
+
+            System.out.println("Logout successful");
+            return "\"logout successful\"";
         }
 
-        return "\"logout successful\"";
+        System.out.println("Logout Unsuccessful");
+        return "\"logout unsuccessful\"";
     }
 
     @GetMapping(path = "/userInfo/{email}/{gmail}/{com}")

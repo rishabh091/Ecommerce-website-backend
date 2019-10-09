@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.dao.CartRepository;
+import com.example.demo.dao.ProductRepository;
 import com.example.demo.dao.ProductRepositoryClass;
 import com.example.demo.dao.UserRepositoryClass;
 import com.example.demo.domain.Cart;
@@ -52,7 +53,7 @@ public class CartService {
                 cartObject.setQuantity(cartObject.getQuantity()+1);
 
                 cartRepository.save(cartObject);
-                return "Quantity increased";
+                return "\"Quantity increased\"";
             }
         }
 
@@ -62,7 +63,7 @@ public class CartService {
         cartObject.setUser(user.get());
 
         cartRepository.save(cartObject);
-        return "Item added to cart";
+        return "\"Item added to cart\"";
     }
 
     @Transactional
@@ -72,6 +73,42 @@ public class CartService {
 
         cartRepository.deleteByUserAndProducts(user,product);
 
-        return "deletion completed";
+        return "\"deletion completed\"";
+    }
+
+    public String increment(int value,Long productId,Principal principal){
+        ArrayList<Cart> cart=getCartFromCurrentUser(principal);
+        Optional<Products> products=productRepositoryClass.getById(productId);
+
+        for(int i=0;i<cart.size();i++){
+            Cart cartObject=cart.get(i);
+
+            if(cartObject.getProducts()==products.get()){
+                cartObject.setQuantity(cartObject.getQuantity()+value);
+                cartRepository.save(cartObject);
+
+                return "\"successful\"";
+            }
+        }
+
+        return "\"unsuccessful\"";
+    }
+
+    public String decrement(int value,Long productId,Principal principal){
+        ArrayList<Cart> cart=getCartFromCurrentUser(principal);
+        Optional<Products> products=productRepositoryClass.getById(productId);
+
+        for(int i=0;i<cart.size();i++){
+            Cart cartObject=cart.get(i);
+
+            if(cartObject.getProducts()==products.get()){
+                cartObject.setQuantity(cartObject.getQuantity()-value);
+                cartRepository.save(cartObject);
+
+                return "\"successful\"";
+            }
+        }
+
+        return "\"unsuccessful\"";
     }
 }
