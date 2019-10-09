@@ -20,4 +20,8 @@ public class UserRepositoryClass {
         System.out.println("Getting by email");
         return userRepository.findByEmail(email);
     }
+
+    public Optional<User> getById(Long id){
+        return userRepository.findById(id);
+    }
 }

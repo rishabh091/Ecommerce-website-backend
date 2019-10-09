@@ -1,7 +1,6 @@
 package com.example.demo.dao;
 
 import com.example.demo.domain.Products;
-import com.example.demo.services.ProductManagement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,9 +12,6 @@ public class ProductRepositoryClass {
 
     @Autowired
     ProductRepository productRepository;
-
-    @Autowired
-    ProductManagement productManagement;
 
     public boolean addProduct(Products products){
         try{
@@ -44,5 +40,9 @@ public class ProductRepositoryClass {
 
     public ArrayList<Products> getByCategoryAndPrice(String category,double p1,double p2){
         return (ArrayList<Products>)productRepository.findAllByCategoryAndPriceBetween(category,p1,p2);
+    }
+
+    public Optional<Products> getById(Long id){
+        return productRepository.findById(id);
     }
 }
