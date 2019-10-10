@@ -34,6 +34,10 @@ public class CartService {
         return cart;
     }
 
+    public Optional<Cart> getCartById(Long id){
+        return cartRepository.findById(id);
+    }
+
     public ArrayList<Cart> getEmail(Principal principal){
         String email=principal.getName();
         Optional<User> user=userRepositoryClass.getByEmail(email);
@@ -110,5 +114,9 @@ public class CartService {
         }
 
         return "\"unsuccessful\"";
+    }
+
+    public void deleteItemFromCart(Cart cart){
+        cartRepository.delete(cart);
     }
 }

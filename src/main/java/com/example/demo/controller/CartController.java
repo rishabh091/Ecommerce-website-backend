@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping()
+@RequestMapping("/")
 public class CartController {
 
     @Autowired
