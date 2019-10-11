@@ -1,6 +1,5 @@
 package com.example.demo.dao;
 
-import com.example.demo.domain.Cart;
 import com.example.demo.domain.OrderHistory;
 import com.example.demo.domain.User;
 import org.springframework.data.repository.CrudRepository;

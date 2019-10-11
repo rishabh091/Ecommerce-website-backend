@@ -51,4 +51,10 @@ public class ProductHomeController {
         System.out.println("Getting by category and price");
         return productRepositoryClass.getByCategoryAndPrice(category,price1,price2);
     }
+
+    @PostMapping(path = "/editProduct")
+    public String editProduct(@RequestBody Products products){
+        System.out.println(products.getId());
+        return productRepositoryClass.editProduct(products);
+    }
 }

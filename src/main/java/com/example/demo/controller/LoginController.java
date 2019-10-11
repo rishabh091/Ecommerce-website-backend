@@ -47,11 +47,9 @@ public class LoginController {
         return "\"logout unsuccessful\"";
     }
 
-    @GetMapping(path = "/userInfo/{email}/{gmail}/{com}")
-    public Optional<User> getUserByEmail(@PathVariable("email") String emailAddress,
-                                         @PathVariable("gmail") String emailCompany,
-                                         @PathVariable("com") String emailDomain){
-        return userRepositoryClass.getByEmail(emailAddress+"@"+emailCompany+"."+emailDomain);
+    @GetMapping(path = "/userInfo")
+    public Optional<User> getUserByEmail(){
+        return userRepositoryClass.getByEmail(principal.getName());
     }
 
 }

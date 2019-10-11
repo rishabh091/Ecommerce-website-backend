@@ -45,4 +45,11 @@ public class ProductRepositoryClass {
     public Optional<Products> getById(Long id){
         return productRepository.findById(id);
     }
+
+    public String editProduct(Products product){
+        productRepository.deleteById(product.getId());
+        productRepository.save(product);
+
+        return "\"Product edited\"";
+    }
 }
