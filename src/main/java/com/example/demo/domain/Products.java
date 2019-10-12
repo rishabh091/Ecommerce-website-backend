@@ -33,6 +33,8 @@ public class Products {
     @Column(name = "productCatergory")
     private String category;
 
+    private boolean active;
+
     @NotNull
     @Column(columnDefinition = "boolean default false")
     private boolean inStock;
@@ -107,6 +109,14 @@ public class Products {
 
     public void setBrand(String brand) {
         this.brand = brand;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public Products() {

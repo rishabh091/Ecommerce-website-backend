@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import com.example.demo.controller.LoginController;
 import com.example.demo.dao.HistoryRepository;
 import com.example.demo.dao.UserRepositoryClass;
 import com.example.demo.domain.Cart;
@@ -9,6 +10,7 @@ import com.example.demo.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Optional;

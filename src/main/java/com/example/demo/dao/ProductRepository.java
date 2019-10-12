@@ -10,7 +10,8 @@ import java.util.Optional;
 @Repository
 public interface ProductRepository extends CrudRepository<Products, Long> {
 
-    List<Products> findAllByCategory(String category);
+    List<Products> findAllByCategoryAndActive(String category,boolean active);
     List<Products> findAllByPriceBetween(double startPrice,double endPrice);
-    List<Products> findAllByCategoryAndPriceBetween(String category,double startPrice,double endPrice);
+    List<Products> findAllByCategoryAndPriceBetweenAndActive(String category,double startPrice,double endPrice,boolean active);
+    List<Products> findAllByActive(boolean active);
 }

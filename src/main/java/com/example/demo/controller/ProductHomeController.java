@@ -19,6 +19,7 @@ public class ProductHomeController {
     @PostMapping(path = "/addProduct", produces = "application/json")
     public String addProduct(@RequestBody Products products){
         System.out.println("Adding products");
+        products.setActive(true);
         boolean result=productRepositoryClass.addProduct(products);
 
         if(result)
