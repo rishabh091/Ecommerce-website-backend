@@ -5,8 +5,7 @@ import com.example.demo.services.OrderHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Optional;
+import java.util.*;
 
 @Component
 public class ProductRepositoryClass {
@@ -63,5 +62,39 @@ public class ProductRepositoryClass {
         productRepository.save(product);
 
         return "\"Product edited\"";
+    }
+
+    public Set<Products> getItemsFromSearch(String value){
+        ArrayList<Products> products=(ArrayList<Products>) productRepository.findAll();
+        Set<Products> result=new HashSet<>();
+
+        for(int i=0;i<products.size();i++){
+            if(products.get(i).getName().toLowerCase().contains(value.toLowerCase()) ||
+                    products.get(i).getBrand().toLowerCase().contains(value.toLowerCase()) ||
+                    products.get(i).getCategory().toLowerCase().contains(value.toLowerCase()) ||
+                    products.get(i).getDetails().toLowerCase().contains(value.toLowerCase()) ||
+                    products.get(i).getModel().toLowerCase().contains(value.toLowerCase())){
+
+                result.add(products.get(i));
+            }
+        }
+
+        System.out.println("Search result : "+result);
+        return result;
+    }
+
+    public Set<Products> filterOnSearch(String value,double price1, double price2){
+        Set<Products> products=getItemsFromSearch(value);
+        Set<Products> result=new HashSet<>();
+
+        Iterator<Products> iterator=products.iterator();
+
+        while (iterator.hasNext()){
+            Products currentProduct=iterator.next();
+            if(currentProduct.getPrice()>=price1 && currentProduct.getPrice()<=price2){
+                result.add(currentProduct);
+            }
+        }
+        return result;
     }
 }

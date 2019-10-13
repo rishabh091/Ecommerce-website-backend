@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.Set;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -57,5 +58,17 @@ public class ProductHomeController {
     public String editProduct(@RequestBody Products products){
         System.out.println(products.getId());
         return productRepositoryClass.editProduct(products);
+    }
+
+    @GetMapping(path = "/search/{value}")
+    public Set<Products> search(@PathVariable("value") String value){
+        return productRepositoryClass.getItemsFromSearch(value);
+    }
+
+    @GetMapping(path = "/search/q/{value}/priceFilter/{price1}/{price2}")
+    public Set<Products> filterOnSearch(@PathVariable("value") String value,
+                                        @PathVariable("price1") double price1,
+                                        @PathVariable("price2") double price2){
+        return productRepositoryClass.filterOnSearch(value,price1,price2);
     }
 }
