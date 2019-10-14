@@ -1,10 +1,15 @@
 package com.example.demo.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "userTable")
+@Table(name = "userTable",
+uniqueConstraints = {
+        @UniqueConstraint(columnNames = "email"),
+        @UniqueConstraint(columnNames = "mobile")
+})
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -109,5 +114,19 @@ public class User {
 
     public void setActive(int active) {
         this.isActive = active;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", isActive=" + isActive +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", address='" + address + '\'' +
+                ", isSeller=" + isSeller +
+                '}';
     }
 }

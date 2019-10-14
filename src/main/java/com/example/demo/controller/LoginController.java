@@ -52,4 +52,10 @@ public class LoginController {
         return userRepositoryClass.getByEmail(principal.getName());
     }
 
+    @PostMapping(path = "/editProfile")
+    public String editProfile(@RequestBody User user){
+        System.out.println("Editing profile");
+        return userRepositoryClass.editUser(user,principal);
+    }
+
 }
