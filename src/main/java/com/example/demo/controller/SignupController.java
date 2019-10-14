@@ -14,11 +14,19 @@ public class SignupController {
     UserRepositoryClass userRepositoryClass;
 
     @PostMapping(path = "/sendingData" , consumes="application/json")
-    public String signUp(@RequestBody User user) {
+    public boolean signUp(@RequestBody User user) {
         user.setActive(1);
         System.out.println("Sign up service is working");
-        userRepositoryClass.add(user);
 
-        return "\"Success\"";
+        try{
+            userRepositoryClass.checkUser(user);
+            userRepositoryClass.add(user);
+
+            return true;
+        }
+        catch (Exception e){
+            System.out.println(e);
+            return false;
+        }
     }
 }

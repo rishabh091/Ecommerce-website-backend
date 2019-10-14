@@ -1,10 +1,12 @@
 package com.example.demo.dao;
 
 import com.example.demo.domain.User;
+import com.example.demo.services.SameEmailException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Component
@@ -40,5 +42,16 @@ public class UserRepositoryClass {
             System.out.println(e);
             return "\"Unable to save changes\"";
         }
+    }
+
+    public boolean checkUser(User user) throws SameEmailException {
+        ArrayList<User> userList=(ArrayList<User>) userRepository.findAll();
+
+        for(int i=0;i<userList.size();i++){
+            if(userList.get(i).getEmail().equals(user.getEmail())){
+                throw new SameEmailException();
+            }
+        }
+        return true;
     }
 }
