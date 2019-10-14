@@ -57,5 +57,4 @@ public class LoginController {
         System.out.println("Editing profile");
         return userRepositoryClass.editUser(user,principal);
     }
-
 }
