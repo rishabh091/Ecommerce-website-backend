@@ -41,11 +41,17 @@ public class OrderHistoryService {
         }
 
         //saving products in history
-        for(int i=0;i<products.size();i++){
+        int i=0;
+        int j=0;
+        while (i<products.size() && j<carts.size()){
             OrderHistory orderHistory=new OrderHistory();
             orderHistory.setUser(user.get());
             orderHistory.setProducts(products.get(i));
+            orderHistory.setQuantity(carts.get(j).getQuantity());
             historyRepository.save(orderHistory);
+
+            i++;
+            j++;
         }
 
         return "\"Item bought successfully\"";
